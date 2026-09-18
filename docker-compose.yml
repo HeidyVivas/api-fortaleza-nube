@@ -1,0 +1,32 @@
+services:
+  api:
+    build: .
+    container_name: api-nodejs
+    networks:
+      - red-interna
+    restart: unless-stopped
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - uptime-kuma-data:/app/data
+    networks:
+      - red-interna
+    restart: unless-stopped
+
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - red-interna
+    restart: unless-stopped
+
+networks:
+  red-interna:
+    driver: bridge
+
+volumes:
+  uptime-kuma-data:
