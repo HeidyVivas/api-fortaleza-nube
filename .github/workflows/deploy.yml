@@ -52,5 +52,7 @@ jobs:
           script: |
             cd /home/ubuntu/app
             git pull origin main
-            docker compose down
-            docker compose up -d --build
+            docker stop api-fortaleza-nube || true
+            docker rm api-fortaleza-nube || true
+            docker build -t api-fortaleza-nube .
+            docker run -d -p 8080:8080 --name api-fortaleza-nube --restart unless-stopped api-fortaleza-nube
