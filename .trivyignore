@@ -1,0 +1,5 @@
+# CVE-2026-59873: vulnerabilidad en el paquete 'tar' empaquetado dentro
+# de npm CLI (parte de la imagen base node:20-alpine), no es una
+# dependencia directa del proyecto. Riesgo aceptado hasta que la imagen
+# base actualice su versión de npm/tar.
+CVE-2026-59873
